@@ -1,0 +1,13 @@
+trigered_planet_modifier = {
+	potential = {
+		has_tradition = tr_est_administratum_4
+	}
+	planet_crime_add = -5
+}
+
+triggered_planet_modifier = {
+	potential = {
+		has_tradition = tr_est_administratum_3
+	}
+	empire_size_mult = -0.02
+}

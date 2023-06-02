@@ -1,0 +1,11 @@
+esti_civic_1 = {
+	country_government_civic_points_add = 1
+}
+
+esti_civic_2 = {
+	country_government_civic_points_add = 2
+}
+
+esti_confederacy_loyalty_to_the_cause = {
+	planet_jobs_produces_mult = 0.01
+}

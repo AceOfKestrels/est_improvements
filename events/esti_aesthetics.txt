@@ -1,0 +1,122 @@
+namespace = esti_aesthetics
+
+country_event = {
+	id = esti_aesthetics.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	option = {
+		name = militarist
+		trigger = {
+			is_militarist = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_militarist
+		}
+	}
+	option = {
+		name = pacifist
+		trigger = {
+			is_pacifist = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_pacifist
+		}
+	}
+	option = {
+		name = spiritualist
+		trigger = {
+			is_spiritualist = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_spiritualist
+		}
+	}
+	option = {
+		name = materialist
+		trigger = {
+			is_materialist = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_materialist
+		}
+	}
+	option = {
+		name = xenophobe
+		trigger = {
+			is_xenophobe = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_xenophobe
+		}
+	}
+	option = {
+		name = xenophile
+		trigger = {
+			is_xenophile = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_xenophile
+		}
+	}
+	option = {
+		name = authoritarian
+		trigger = {
+			is_authoritarian = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_authoritarian
+		}
+	}
+	option = {
+		name = egalitarian
+		trigger = {
+			is_egalitarian = no
+		}
+		hidden_effect = {
+			set_country_flag = esti_aesthetics_egalitarian
+		}
+	}
+}
+
+country_event = {
+	id = esti_aesthetics.2
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		if = {
+			limit = {
+				NOT = { has_technology = tech_cultural_heritage }
+			}
+			give_technology = {
+				tech = tech_cultural_heritage
+				message = yes
+			}
+		}
+		elseif = {
+			limit = {
+				NOT = { has_technology = tech_heritage_site }
+			}
+			give_technology = {
+				tech = tech_heritage_site
+				message = yes
+			}
+		}
+		elseif = {
+			limit = {
+				NOT = { has_technology = tech_hypercomms_forum }
+			}
+			give_technology = {
+				tech = tech_hypercomms_forum
+				message = yes
+			}
+		}
+		else = {
+			give_technology = {
+				tech = tech_repeatable_improved_core_system_cap
+				message = yes
+			}
+		}
+	}
+}

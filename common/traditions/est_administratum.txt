@@ -1,0 +1,61 @@
+tr_est_administratum_adopt = {
+	# clerks give bureacrat output
+}
+
+tr_est_administratum_finish = {
+	modifier = {
+		planetary_ascension_effect_mult = 0.1
+		ascension_perks_add = 1
+	}
+}
+
+
+tr_est_administratum_1 = {
+	modifier = {
+		country_leader_pool_size = 1
+		leaders_cost_mult = -0.15
+	}
+
+	ai_weight = { factor = 5000 }
+}
+
+tr_est_administratum_2 = {
+	custom_tooltip = tr_est_administratum_2_desc
+	
+	possible = { has_tradition = tr_est_administratum_1 }
+	
+	modifier = {
+		negative_traits_leader = -1
+	}
+
+	ai_weight = { factor = 5000 }
+}
+
+tr_est_administratum_3 = {
+	modifier = {
+		# -planet empire size from bureacrats
+	}
+
+	ai_weight = { factor = 5000 }
+}
+
+tr_est_administratum_4 = {
+	possible = { has_tradition = tr_est_administratum_3 }
+
+	modifier = {
+		# bureau of oversight building (TODO)
+		# bureacrats reduce crime
+	}
+
+	ai_weight = { factor = 5000 }
+}
+
+tr_est_administratum_5 = {
+	
+	modifier = {
+		planet_districts_upkeep_mult = -0.1
+		planet_building_build_speed_mult = 0.1
+	}
+
+	ai_weight = { factor = 5000 }
+}

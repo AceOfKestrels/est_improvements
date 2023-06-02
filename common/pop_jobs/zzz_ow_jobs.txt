@@ -1,0 +1,173 @@
+bureaucrat = {
+	category = specialist
+	condition_string = SPECIALIST_JOB_TRIGGER
+	building_icon = building_capital
+	clothes_texture_index = 3
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_specialist_job
+
+	possible = {
+		complex_specialist_job_check_trigger = yes
+	}
+
+	resources = {
+		category = planet_administrators
+		produces = {
+			unity = 4
+		}
+		upkeep = {
+			consumer_goods = 2
+		}
+	}
+
+	triggered_country_modifier = {
+		potential = {
+			always = yes
+		}
+		country_edict_fund_add = 2
+		mult = value:job_total_output_modifier|JOB|bureaucrat|RESOURCE|unity|
+	}
+
+	inline_script = jobs/effects/type/inline_evolved_administrator_effect
+
+	inline_script = jobs/effects/type/inline_evolved_bureaucrat_effect
+
+	inline_script = esti/jobs/inline_bureaucrat
+
+	weight = {
+		weight = @specialist_job_weight
+		mult = value:job_weights_modifier|JOB|bureaucrat|RESOURCE|unity|
+		modifier = {
+			factor = 1.5
+			has_job = bureaucrat
+		}
+
+		modifier = {
+			factor = 2
+			has_trait = trait_robot_propaganda_machines
+			OR = {
+				tec_is_non_sapient_robot = { cached = yes }
+				tec_is_shackled_robot = { cached = yes }
+			}
+		}
+		modifier = {
+			factor = 2
+			is_enslaved = yes
+			OR = {
+				has_slavery_type = {
+					type = slavery_indentured
+				}
+				has_slavery_type = {
+					type = slavery_normal
+				}
+			}
+		}
+		modifier = {
+			factor = 0.2
+			has_citizenship_rights = no
+			NOR = {
+				tec_has_trait_slave = yes
+			}
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+	}
+}
+
+clerk = {
+	category = worker
+	condition_string = WORKER_JOB_TRIGGER
+	building_icon = building_residence
+	clothes_texture_index = 2
+
+	possible_pre_triggers = {
+		has_owner = yes
+		is_being_purged = no
+		is_being_assimilated = no
+		is_sapient = yes
+	}
+
+	possible_precalc = can_fill_worker_job
+
+	resources = {				
+		category = planet_clerks
+	}
+
+	overlord_resources = {
+		category = planet_corporate_franchising_meddling
+		inline_script = jobs/resources/inline_evolved_franchise_headquarters_overlord_resources
+	}
+
+	triggered_planet_modifier = {
+		trade_value_add = 4
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_trade_mult|
+	}
+
+	triggered_planet_modifier = {
+		planet_amenities_add = 2
+		mult = value:scripted_modifier_mult|MODIFIER|pop_job_amenities_mult|
+	}
+	
+
+	inline_script = jobs/effects/inline_evolved_franchise_headquarters
+
+	inline_script = jobs/effects/type/inline_evolved_clerk_effect
+
+	inline_script = esti/jobs/inline_clerk
+	
+	weight = {
+		weight = @clerk_job_weight
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_amenities_mult|
+		mult = value:scripted_modifier_job_weight_mult|MODIFIER|pop_job_trade_mult|
+		modifier = {
+			factor = 0.25
+			is_enslaved = yes
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 2
+			OR = {
+				tec_is_non_sapient_robot = { cached = yes }
+				tec_is_shackled_robot = { cached = yes }
+				tec_is_non_sapient_bioservant = { cached = yes }
+				tec_is_shackled_bioservant = { cached = yes }
+			}
+			can_take_servant_job = no
+		}
+		modifier = {
+			factor = 10
+			OR = {
+				tec_is_non_sapient_robot = { cached = yes }
+				tec_is_shackled_robot = { cached = yes }
+				tec_is_non_sapient_bioservant = { cached = yes }
+				tec_is_shackled_bioservant = { cached = yes }
+			}
+			can_take_servant_job = no
+			can_fill_specialist_job = no
+		}
+		modifier = {
+			factor = 0.1
+			can_take_servant_job = yes
+		}
+
+		modifier = {
+			factor = 1.1
+			exists = owner
+			owner = { is_megacorp = yes }
+		}
+		modifier = {
+			factor = 0.5
+			exists = owner
+			owner = { is_fallen_empire = yes }
+		}
+	}
+}

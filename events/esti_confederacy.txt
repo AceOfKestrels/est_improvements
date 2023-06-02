@@ -1,0 +1,63 @@
+namespace = esti_confederacy
+
+event = {
+	id = esti_confederacy.1
+	is_triggered_only = yes
+	hide_window = yes
+	
+	immediate = {
+		every_country = {
+			limit = { 
+				is_default_or_fallen = yes 
+				has_modifier = esti_confederacy_loyalty_to_the_cause
+			}
+			remove_modifier = esti_confederacy_loyalty_to_the_cause
+		}
+		every_federation = {
+			limit = { always = yes }
+			set_variable = {
+				which = total_envoy_amount
+				value = 0
+			}
+			every_member = {
+				limit = {
+					always = yes #has_tradition = confed_whatever
+				}
+				federation = {
+					change_variable = {
+						which = total_envoy_amount
+						value = prev.trigger:num_envoys_to_federation
+					}
+				}
+			}
+			if = {
+				limit = {
+					check_variable = {
+						which = total_envoy_amount
+						value > 0
+					}
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = total_envoy_amount
+							value > 10
+						}
+					}
+					set_variable = {
+						which = total_envoy_amount
+						value = 10
+					}
+				}
+				every_member = {
+					limit = { always = yes }
+					add_modifier = {
+						modifier = esti_confederacy_loyalty_to_the_cause
+						mult = prev.total_envoy_amount
+						days = -1
+					}
+				}
+			}
+		}
+	}
+}

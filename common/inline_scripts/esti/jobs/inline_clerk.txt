@@ -1,0 +1,6 @@
+triggered_planet_modifier = {
+	potential = {
+		has_tradition = tr_est_administratum_adopt
+	}
+	planet_administrators_produces_mult = 0.025
+}
